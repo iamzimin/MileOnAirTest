@@ -1,24 +1,20 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
-    namespace = "com.evg.mileonairtest"
+    namespace = "com.evg.resource"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.evg.mileonairtest"
         minSdk = 28
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -43,21 +39,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:resource"))
-    implementation(project(":feature:settings"))
-
-    // Koin
-    implementation(libs.di.koin)
-    implementation(libs.di.koin.compose)
-
-    // Navigation
-    implementation(libs.androidx.ui.navigation)
-
-    // Serialization
-    implementation(libs.kotlinx.serialization)
-
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+    //UI
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
@@ -65,6 +47,10 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
     debugImplementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.appcompat)
+
+    // Material
+    implementation(libs.material)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

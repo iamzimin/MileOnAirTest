@@ -21,4 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "MileOnAirTest"
 include(":app")
- 
+include(":core:resource")
+include(":core:shared-prefs")
+include(":feature:settings")
