@@ -44,6 +44,7 @@ android {
 
 dependencies {
     implementation(project(":core:resource"))
+    implementation(project(":core:shared-prefs"))
     implementation(project(":feature:settings"))
 
     // Koin

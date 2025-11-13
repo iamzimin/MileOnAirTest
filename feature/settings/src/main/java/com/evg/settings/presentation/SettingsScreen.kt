@@ -54,6 +54,8 @@ fun SettingsScreen(
 ) {
     var isBiometricsEnabled by remember { mutableStateOf(true) }
 
+    val userName = state.settingsUser?.name ?: stringResource(R.string.user_stumb)
+    val userSurname = state.settingsUser?.surname ?: stringResource(R.string.user_stumb)
     val columnSpace = 20.dp
     val cardIconSpace = 6.dp
 
@@ -76,7 +78,7 @@ fun SettingsScreen(
 
         // Name
         Text(
-            text = "Test",
+            text = userName,
             style = AppTheme.typography.heading,
             color = AppTheme.colors.text,
         )
@@ -85,7 +87,7 @@ fun SettingsScreen(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = "Test",
+                text = userSurname,
                 style = AppTheme.typography.heading,
                 color = AppTheme.colors.text,
             )

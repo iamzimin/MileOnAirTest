@@ -8,16 +8,18 @@ import org.orbitmvi.orbit.viewmodel.container
 class SettingsViewModel(
     private val settingsRepository: SettingsRepository,
 ) : ContainerHost<SettingsState, SettingsSideEffect>, ViewModel() {
-    override val container = container<SettingsState, SettingsSideEffect>(SettingsState())
+    override val container = container<SettingsState, SettingsSideEffect>(SettingsState()) {
+        loadUser()
+    }
 
     fun dispatch(action: SettingsAction) {
         when (action) {
-            is SettingsAction.FirstClass -> test()
-            is SettingsAction.SecondObject -> test()
+            is SettingsAction.LoadUser -> loadUser()
         }
     }
 
-    private fun test() = intent {
-        //reduce { state.copy(variable = true) }
+    private fun loadUser() = intent {
+        val user = settingsRepository.getUser()
+        reduce { state.copy(settingsUser = user) }
     }
 }

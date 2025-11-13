@@ -9,7 +9,7 @@ import org.koin.dsl.module
 val settingsModule = module {
     single<SettingsRepository> {
         SettingsRepositoryImpl(
-            //context = get(),
+            sharedPrefsRepository = get()
         )
     }
     viewModel { SettingsViewModel(settingsRepository = get()) }

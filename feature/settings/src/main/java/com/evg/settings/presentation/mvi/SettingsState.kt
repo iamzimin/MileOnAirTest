@@ -1,6 +1,7 @@
 package com.evg.settings.presentation.mvi
 
+import com.evg.settings.data.model.SettingsUser
+
 data class SettingsState(
-    val paramOne: String = "default",
-    val paramTwo: List<String> = emptyList(),
+    val settingsUser: SettingsUser? = null,
 )
