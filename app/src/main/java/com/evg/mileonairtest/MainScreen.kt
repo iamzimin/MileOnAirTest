@@ -8,7 +8,11 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -21,16 +25,37 @@ import com.evg.settings.presentation.SettingsRoot
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
-    val startDestination = Route.Settings
+    val backgroundColor = AppTheme.colors.background
+
+    val backgroundGradient = remember(backgroundColor) {
+        Brush.linearGradient(
+            colors = listOf(
+                backgroundColor.let { bg ->
+                    Color(
+                        red = (bg.red + 0.05f).coerceAtMost(1f),
+                        green = (bg.green + 0.05f).coerceAtMost(1f),
+                        blue = (bg.blue + 0.05f).coerceAtMost(1f),
+                        alpha = bg.alpha
+                    )
+                },
+                backgroundColor
+            ),
+            start = Offset(0f, 0f),
+            end = Offset(1000f, 1000f)
+        )
+    }
 
     Scaffold(
-        modifier = Modifier.fillMaxSize().imePadding(),
-        containerColor = AppTheme.colors.background,
+        modifier = Modifier
+            .fillMaxSize()
+            .imePadding()
+            .background(brush = backgroundGradient),
+        containerColor = Color.Transparent,
     ) { paddingValues ->
         NavHost(
             navController = navController,
-            startDestination = startDestination,
-            modifier = Modifier.background(AppTheme.colors.background),
+            startDestination = Route.Settings,
+            modifier = Modifier,
         ) {
             composable<Route.Settings> {
                 SettingsRoot(

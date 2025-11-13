@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MileOnAirTest</string>
+
+    <string name="back">Назад</string>
+    <string name="my_purchases">Мои покупки</string>
+    <string name="settings">Настройки</string>
+    <string name="email">Email</string>
+    <string name="need_confirm">Необходимо подтвердить</string>
+    <string name="log_in_biometrics">Вход по биометрии</string>
+    <string name="change_code">Сменить 4-х значный код</string>
+    <string name="registration_bank_clients">Регистрация для клиентов банка</string>
+    <string name="language">Язык</string>
+    <string name="russian">русский</string>
+</resources>
