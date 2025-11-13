@@ -12,4 +12,17 @@
     <string name="language">Язык</string>
     <string name="russian">русский</string>
     <string name="user_stumb">art</string>
+
+    <string name="incorrect_data">Некорректные данные</string>
+    <string name="participant_number">Номер участника</string>
+    <string name="participant_number_hint">Номер из 16 цифр, который вы получили от банка</string>
+    <string name="code">Код</string>
+    <string name="code_hint">Код, который вы получили от банка</string>
+    <string name="first_name">Имя</string>
+    <string name="first_name_hint">Имя (на латинице, как в загранпаспорте)</string>
+    <string name="last_name">Фамилия</string>
+    <string name="last_name_hint">Фамилия (на латинице, как в загранпаспорте)</string>
+    <string name="agreement_text1">Нажимая кнопку продолжить, вы соглашаетесь</string>
+    <string name="agreement_text2">с условиями участия</string>
+    <string name="continue_button">Продолжить</string>
 </resources>

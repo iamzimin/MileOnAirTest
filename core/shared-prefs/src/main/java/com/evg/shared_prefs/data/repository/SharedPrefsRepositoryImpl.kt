@@ -14,6 +14,7 @@ class SharedPrefsRepositoryImpl(
         private const val PREFS_NAME = "user_prefs"
         private const val KEY_NAME = "user_name"
         private const val KEY_SURNAME = "user_surname"
+        private const val PARTICIPANT_CODE = "participant_code"
         private const val KEY_CODE = "user_code"
     }
 
@@ -27,7 +28,8 @@ class SharedPrefsRepositoryImpl(
             sharedPreferences.edit().apply {
                 putString(KEY_NAME, user.name)
                 putString(KEY_SURNAME, user.surname)
-                putLong(KEY_CODE, user.code)
+                putString(PARTICIPANT_CODE, user.participantNumber)
+                putString(KEY_CODE, user.code)
                 apply()
             }
         }
@@ -36,15 +38,17 @@ class SharedPrefsRepositoryImpl(
     override suspend fun getUser(): User? = withContext(Dispatchers.IO) {
         val name = sharedPreferences.getString(KEY_NAME, null)
         val surname = sharedPreferences.getString(KEY_SURNAME, null)
-        val code = sharedPreferences.getLong(KEY_CODE, 0)
+        val participantNumber = sharedPreferences.getString(PARTICIPANT_CODE, null)
+        val code = sharedPreferences.getString(KEY_CODE, null)
 
-        if (name == null && surname == null && code == 0L) {
+        if (name == null && surname == null && participantNumber == null && code == null) {
             null
         } else {
             User(
                 name = name ?: "",
                 surname = surname ?: "",
-                code = code,
+                participantNumber = participantNumber ?: "",
+                code = code ?: "",
             )
         }
     }

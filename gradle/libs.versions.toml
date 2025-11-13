@@ -13,7 +13,7 @@ material = "1.13.0"
 koin = "4.1.1"
 navigation = "2.9.6"
 orbit = "11.0.0"
-serialization = "1.7.3"
+serialization = "1.9.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }

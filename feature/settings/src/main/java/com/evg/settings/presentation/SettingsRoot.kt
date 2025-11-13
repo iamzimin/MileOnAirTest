@@ -10,10 +10,12 @@ import org.orbitmvi.orbit.compose.collectAsState
 fun SettingsRoot(
     modifier: Modifier,
     viewModel: SettingsViewModel = koinViewModel(),
+    onRegistrationScreen: () -> Unit,
 ) {
     SettingsScreen(
         modifier = modifier,
         state = viewModel.collectAsState().value,
         dispatch = viewModel::dispatch,
+        onRegistrationScreen = onRegistrationScreen,
     )
 }

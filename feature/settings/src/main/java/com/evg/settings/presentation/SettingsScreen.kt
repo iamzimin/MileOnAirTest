@@ -21,6 +21,7 @@ import androidx.compose.material3.SwitchColors
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -38,6 +39,7 @@ import com.evg.resource.R
 import com.evg.resource.custom.BackButton
 import com.evg.resource.custom.CustomCard
 import com.evg.resource.theme.AppTheme
+import com.evg.resource.theme.ColumnSpace
 import com.evg.resource.theme.HorizontalPadding
 import com.evg.resource.theme.HorizontalPaddingTile
 import com.evg.resource.theme.IconSize
@@ -51,12 +53,16 @@ fun SettingsScreen(
     modifier: Modifier,
     state: SettingsState,
     dispatch: (SettingsAction) -> Unit,
+    onRegistrationScreen: () -> Unit,
 ) {
+    LaunchedEffect(Unit) {
+        dispatch(SettingsAction.LoadUser)
+    }
+
     var isBiometricsEnabled by remember { mutableStateOf(true) }
 
     val userName = state.settingsUser?.name ?: stringResource(R.string.user_stumb)
     val userSurname = state.settingsUser?.surname ?: stringResource(R.string.user_stumb)
-    val columnSpace = 20.dp
     val cardIconSpace = 6.dp
 
 
@@ -69,13 +75,6 @@ fun SettingsScreen(
             )
             .verticalScroll(rememberScrollState()),
     ) {
-        BackButton(
-            onClick = {}
-        )
-
-        Spacer(modifier = Modifier.height(30.dp))
-
-
         // Name
         Text(
             text = userName,
@@ -100,8 +99,7 @@ fun SettingsScreen(
             )
         }
 
-        Spacer(modifier = Modifier.height(columnSpace))
-
+        Spacer(modifier = Modifier.height(ColumnSpace))
 
         // Phone
         Text(
@@ -110,7 +108,7 @@ fun SettingsScreen(
             color = AppTheme.colors.textFieldTitle,
         )
 
-        Spacer(modifier = Modifier.height(columnSpace))
+        Spacer(modifier = Modifier.height(ColumnSpace))
 
 
         // Purchases
@@ -141,7 +139,7 @@ fun SettingsScreen(
             onClick = {},
         )
 
-        Spacer(modifier = Modifier.height(columnSpace))
+        Spacer(modifier = Modifier.height(ColumnSpace))
 
 
         // Settings
@@ -256,7 +254,9 @@ fun SettingsScreen(
                     tint = AppTheme.colors.text,
                 )
             },
-            onClick = {},
+            onClick = {
+                onRegistrationScreen()
+            },
         )
         Spacer(modifier = Modifier.height(HorizontalPaddingTile))
 
@@ -301,6 +301,7 @@ private fun SettingsScreenPreview() {
                 modifier = Modifier,
                 state = SettingsState(),
                 dispatch = {},
+                onRegistrationScreen = {},
             )
         }
     }

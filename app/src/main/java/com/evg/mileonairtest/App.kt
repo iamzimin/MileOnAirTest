@@ -1,6 +1,7 @@
 package com.evg.mileonairtest
 
 import android.app.Application
+import com.evg.registration.di.registrationModule
 import com.evg.settings.di.settingsModule
 import com.evg.shared_prefs.di.sharedPrefsModule
 import org.koin.android.ext.koin.androidContext
@@ -14,7 +15,7 @@ class App: Application() {
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@App)
-            modules(settingsModule, sharedPrefsModule)
+            modules(settingsModule, sharedPrefsModule, registrationModule)
         }
     }
 }
