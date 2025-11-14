@@ -54,6 +54,7 @@ fun SettingsScreen(
     state: SettingsState,
     dispatch: (SettingsAction) -> Unit,
     onRegistrationScreen: () -> Unit,
+    onPurchasesScreen: () -> Unit,
 ) {
     LaunchedEffect(Unit) {
         dispatch(SettingsAction.LoadUser)
@@ -136,7 +137,9 @@ fun SettingsScreen(
                     tint = AppTheme.colors.text,
                 )
             },
-            onClick = {},
+            onClick = {
+                onPurchasesScreen()
+            },
         )
 
         Spacer(modifier = Modifier.height(ColumnSpace))
@@ -302,6 +305,7 @@ private fun SettingsScreenPreview() {
                 state = SettingsState(),
                 dispatch = {},
                 onRegistrationScreen = {},
+                onPurchasesScreen = {},
             )
         }
     }

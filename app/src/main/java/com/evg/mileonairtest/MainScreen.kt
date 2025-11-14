@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.evg.purchases.presentation.PurchasesRoot
 import com.evg.registration.presentation.RegistrationRoot
 import com.evg.resource.custom.BackButton
 import com.evg.resource.theme.AppTheme
@@ -54,7 +55,7 @@ fun MainScreen() {
         modifier = Modifier
             .fillMaxSize()
             .imePadding()
-            .background(brush = backgroundGradient),
+            .background(backgroundGradient),
         containerColor = Color.Transparent,
         topBar = {
             TopAppBar(
@@ -77,13 +78,15 @@ fun MainScreen() {
         NavHost(
             navController = navController,
             startDestination = Route.Settings,
-            modifier = Modifier,
         ) {
             composable<Route.Settings> {
                 SettingsRoot(
                     modifier = Modifier.fillMaxSize().padding(paddingValues),
                     onRegistrationScreen = {
                         navController.navigate(route = Route.Registration)
+                    },
+                    onPurchasesScreen = {
+                        navController.navigate(route = Route.Purchases)
                     }
                 )
             }
@@ -93,6 +96,11 @@ fun MainScreen() {
                     onPreviousScreen = {
                         navController.popBackStack()
                     },
+                )
+            }
+            composable<Route.Purchases> {
+                PurchasesRoot(
+                    modifier = Modifier.fillMaxSize().padding(paddingValues),
                 )
             }
         }

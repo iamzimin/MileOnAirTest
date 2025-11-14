@@ -25,4 +25,7 @@
     <string name="agreement_text1">Нажимая кнопку продолжить, вы соглашаетесь</string>
     <string name="agreement_text2">с условиями участия</string>
     <string name="continue_button">Продолжить</string>
+    <string name="loading">Загрузка…</string>
+    <string name="error">Ошибка: %1$s</string>
+    <string name="refresh">Обновить</string>
 </resources>

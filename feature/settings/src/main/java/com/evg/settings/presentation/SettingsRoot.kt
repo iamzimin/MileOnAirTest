@@ -11,11 +11,13 @@ fun SettingsRoot(
     modifier: Modifier,
     viewModel: SettingsViewModel = koinViewModel(),
     onRegistrationScreen: () -> Unit,
+    onPurchasesScreen: () -> Unit,
 ) {
     SettingsScreen(
         modifier = modifier,
         state = viewModel.collectAsState().value,
         dispatch = viewModel::dispatch,
         onRegistrationScreen = onRegistrationScreen,
+        onPurchasesScreen = onPurchasesScreen,
     )
 }

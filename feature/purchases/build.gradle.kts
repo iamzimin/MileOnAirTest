@@ -1,24 +1,21 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
 }
 
 android {
-    namespace = "com.evg.mileonairtest"
+    namespace = "com.evg.purchases"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.evg.mileonairtest"
         minSdk = 28
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -44,21 +41,20 @@ android {
 
 dependencies {
     implementation(project(":core:resource"))
-    implementation(project(":core:shared-prefs"))
-    implementation(project(":feature:settings"))
-    implementation(project(":feature:registration"))
-    implementation(project(":feature:purchases"))
+
+    // Serialization
+    implementation(libs.kotlinx.serialization)
 
     // Koin
     implementation(libs.di.koin)
     implementation(libs.di.koin.compose)
 
-    // Navigation
-    implementation(libs.androidx.ui.navigation)
+    // MVI Orbit
+    implementation(libs.mvi.orbit.core)
+    implementation(libs.mvi.orbit.viewmodel)
+    implementation(libs.mvi.orbit.compose)
 
-    // Serialization
-    implementation(libs.kotlinx.serialization)
-
+    implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
