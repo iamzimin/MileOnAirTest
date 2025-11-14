@@ -129,6 +129,7 @@ fun RegistrationScreen(
         )
 
         Spacer(modifier = Modifier.weight(1f))
+        Spacer(modifier = Modifier.height(ColumnSpace))
 
         Text(
             modifier = Modifier

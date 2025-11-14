@@ -16,5 +16,8 @@ val purpleDarkPalette = AppPalette(
     tileBackground = Color(0xFF252138),
 
     // Button
-    buttonColor = Color(0xFF3C3756)
+    buttonColor = Color(0xFF3C3756),
+
+    // Navigation
+    windowControllerBackground = Color(0xFF191529),
 )

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -62,11 +63,18 @@ fun CustomTestField(
         OutlinedTextField(
             value = value,
             onValueChange = { newValue ->
-                if (fieldType == FieldType.PARTICIPANT_NUMBER) {
-                    val digitsOnly = newValue.filter { it.isDigit() }.take(16)
-                    onValueChange(digitsOnly)
-                } else {
-                    onValueChange(newValue)
+                when (fieldType) {
+                    FieldType.PARTICIPANT_NUMBER -> {
+                        val digitsOnly = newValue.filter { it.isDigit() }.take(16)
+                        onValueChange(digitsOnly)
+                    }
+                    FieldType.CODE -> {
+                        val digitsOnly = newValue.filter { it.isDigit() }
+                        onValueChange(digitsOnly)
+                    }
+                    FieldType.NAME -> {
+                        onValueChange(newValue)
+                    }
                 }
             },
             modifier = Modifier.fillMaxWidth(),
@@ -125,6 +133,10 @@ private fun participantNumberVisualTransformation(): VisualTransformation {
 @Composable
 private fun textFieldColors(isError: Boolean): TextFieldColors {
     val borderColor = if (isError) AppTheme.colors.error else Color.Transparent
+    val selectionColors = TextSelectionColors(
+        handleColor = Color(0xFFF000EE),
+        backgroundColor = Color(0xFFF000EE).copy(alpha = 0.4f)
+    )
     
     return OutlinedTextFieldDefaults.colors(
         focusedTextColor = AppTheme.colors.text,
@@ -140,6 +152,7 @@ private fun textFieldColors(isError: Boolean): TextFieldColors {
         disabledBorderColor = Color.Transparent,
         errorBorderColor = AppTheme.colors.error,
         cursorColor = AppTheme.colors.text,
+        selectionColors = selectionColors,
         focusedPlaceholderColor = AppTheme.colors.textFieldPlaceholder,
         unfocusedPlaceholderColor = AppTheme.colors.textFieldPlaceholder,
         errorPlaceholderColor = AppTheme.colors.textFieldPlaceholder,

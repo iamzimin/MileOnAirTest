@@ -17,4 +17,7 @@ data class AppPalette(
 
     // Button
     val buttonColor: Color,
+
+    // Navigation
+    val windowControllerBackground: Color,
 )
